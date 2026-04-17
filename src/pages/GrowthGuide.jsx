@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import {
   TrendingUp, Clock, Users, Zap, Shield, BookOpen,
   ChevronDown, ChevronUp, Sparkles, Send, Loader2,
-  Hash, BarChart2, Star, MessageCircle, RefreshCw
+  Hash, BarChart2, Star, MessageCircle, RefreshCw, ArrowLeft
 } from "lucide-react";
 
 const TOPICS = [
@@ -237,10 +238,15 @@ export default function GrowthGuide() {
     <div className="min-h-screen bg-background font-inter">
       {/* Header */}
       <div className="border-b border-border bg-card/50 backdrop-blur-md sticky top-0 z-30">
-        <div className="max-w-4xl mx-auto px-6 h-14 flex items-center gap-3">
-          <TrendingUp className="w-5 h-5 text-xblue" />
-          <span className="font-black text-white">Growth Guide</span>
-          <span className="text-xs bg-xblue/10 border border-xblue/30 text-xblue px-2 py-0.5 rounded-full font-semibold">2026</span>
+        <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <TrendingUp className="w-5 h-5 text-xblue" />
+            <span className="font-black text-white">Growth Guide</span>
+            <span className="text-xs bg-xblue/10 border border-xblue/30 text-xblue px-2 py-0.5 rounded-full font-semibold">2026</span>
+          </div>
+          <Link to="/" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-white transition-colors">
+            <ArrowLeft className="w-4 h-4" /> Home
+          </Link>
         </div>
       </div>
 

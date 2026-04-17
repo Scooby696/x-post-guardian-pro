@@ -122,8 +122,8 @@ export default function ScheduledTweets() {
       <div className="border-b border-border bg-card/50 backdrop-blur-md sticky top-0 z-30">
         <div className="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Link to="/" className="text-muted-foreground hover:text-white transition-colors">
-              <ArrowLeft className="w-4 h-4" />
+            <Link to="/" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-white transition-colors">
+              <ArrowLeft className="w-4 h-4" /> Home
             </Link>
             <Clock className="w-5 h-5 text-xblue" />
             <span className="font-black text-white">Scheduled Tweets</span>
