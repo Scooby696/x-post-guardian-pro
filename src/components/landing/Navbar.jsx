@@ -32,6 +32,12 @@ export default function Navbar({ isPro, onLicenseClick }) {
           >
             Growth Guide
           </Link>
+          <Link
+            to="/scheduled"
+            className="text-muted-foreground hover:text-white text-sm font-medium transition-colors hidden sm:block"
+          >
+            Scheduled
+          </Link>
           {!isPro ? (
             <button
               onClick={onLicenseClick}

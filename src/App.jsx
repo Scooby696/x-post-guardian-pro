@@ -8,6 +8,7 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 // Add page imports here
 import Home from "./pages/Home";
 import GrowthGuide from "./pages/GrowthGuide";
+import ScheduledTweets from "./pages/ScheduledTweets";
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -37,6 +38,7 @@ const AuthenticatedApp = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/growth-guide" element={<GrowthGuide />} />
+      <Route path="/scheduled" element={<ScheduledTweets />} />
       {/* Add your page Route elements here */}
       <Route path="*" element={<PageNotFound />} />
     </Routes>

@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { analyzeDraft, getRewriteSuggestions } from "@/lib/analyzer";
 import { getGrowthTips } from "@/lib/growthTips";
 import GrowthTips from "@/components/landing/GrowthTips";
-import { Shield, AlertTriangle, CheckCircle, XCircle, Lightbulb, RefreshCw } from "lucide-react";
+import { Shield, AlertTriangle, CheckCircle, XCircle, Lightbulb, RefreshCw, CalendarPlus } from "lucide-react";
+import ScheduleModal from "@/components/landing/ScheduleModal";
 
 const FREE_LIMIT = 15;
 
@@ -12,6 +13,7 @@ export default function Analyzer({ analysisCount, setAnalysisCount, isPro }) {
   const [result, setResult] = useState(null);
   const [growthTips, setGrowthTips] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [scheduleOpen, setScheduleOpen] = useState(false);
 
   const remaining = FREE_LIMIT - analysisCount;
   const canAnalyze = isPro || analysisCount < FREE_LIMIT;
@@ -180,11 +182,27 @@ export default function Analyzer({ analysisCount, setAnalysisCount, isPro }) {
                 )}
 
                 <GrowthTips tips={growthTips} />
+
+                {/* Schedule CTA */}
+                <button
+                  onClick={() => setScheduleOpen(true)}
+                  className="w-full flex items-center justify-center gap-2 border border-xblue/40 text-xblue hover:bg-xblue/10 font-bold py-3 rounded-full transition-all text-sm"
+                >
+                  <CalendarPlus className="w-4 h-4" />
+                  Schedule for a Prime Posting Time
+                </button>
               </motion.div>
             )}
           </AnimatePresence>
         </motion.div>
       </div>
+
+      <ScheduleModal
+        open={scheduleOpen}
+        onClose={() => setScheduleOpen(false)}
+        tweetText={text}
+        analysisResult={result}
+      />
     </section>
   );
 }
