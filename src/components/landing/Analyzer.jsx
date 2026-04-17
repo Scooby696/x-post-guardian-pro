@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { analyzeDraft, getRewriteSuggestions } from "@/lib/analyzer";
+import { getGrowthTips } from "@/lib/growthTips";
+import GrowthTips from "@/components/landing/GrowthTips";
 import { Shield, AlertTriangle, CheckCircle, XCircle, Lightbulb, RefreshCw } from "lucide-react";
 
 const FREE_LIMIT = 15;
@@ -8,6 +10,7 @@ const FREE_LIMIT = 15;
 export default function Analyzer({ analysisCount, setAnalysisCount, isPro }) {
   const [text, setText] = useState("");
   const [result, setResult] = useState(null);
+  const [growthTips, setGrowthTips] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const remaining = FREE_LIMIT - analysisCount;
@@ -18,6 +21,7 @@ export default function Analyzer({ analysisCount, setAnalysisCount, isPro }) {
     if (!canAnalyze) return;
     const r = analyzeDraft(text);
     setResult(r);
+    setGrowthTips(getGrowthTips(text));
     setShowSuggestions(false);
     if (!isPro) setAnalysisCount(c => c + 1);
   }
@@ -25,6 +29,7 @@ export default function Analyzer({ analysisCount, setAnalysisCount, isPro }) {
   function handleClear() {
     setText("");
     setResult(null);
+    setGrowthTips([]);
     setShowSuggestions(false);
   }
 
@@ -173,6 +178,8 @@ export default function Analyzer({ analysisCount, setAnalysisCount, isPro }) {
                     <span className="text-sm text-green-300">No rule violations found. Safe to post!</span>
                   </div>
                 )}
+
+                <GrowthTips tips={growthTips} />
               </motion.div>
             )}
           </AnimatePresence>
