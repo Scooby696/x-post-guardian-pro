@@ -7,7 +7,7 @@ export default function Navbar({ isPro, onLicenseClick }) {
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Shield className="w-6 h-6 text-xblue" />
-          <span className="font-black text-white text-lg">X Post Guardian P</span>
+          <span className="font-black text-white text-lg">X Post Guardian Pro</span>
           {isPro &&
           <span className="text-xs font-bold bg-xblue text-black px-2 py-0.5 rounded-full ml-1">PRO</span>
           }
