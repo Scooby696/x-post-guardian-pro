@@ -1,4 +1,5 @@
 import { Shield } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Navbar({ isPro, onLicenseClick }) {
   return (
@@ -25,6 +26,12 @@ export default function Navbar({ isPro, onLicenseClick }) {
           >
             Pricing
           </button>
+          <Link
+            to="/growth-guide"
+            className="text-muted-foreground hover:text-white text-sm font-medium transition-colors hidden sm:block"
+          >
+            Growth Guide
+          </Link>
           {!isPro ? (
             <button
               onClick={onLicenseClick}
