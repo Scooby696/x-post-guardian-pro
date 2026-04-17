@@ -264,6 +264,21 @@ export default function GrowthGuide() {
           </p>
         </motion.div>
 
+        {/* Paid Tiers Banner */}
+        <div className="bg-gradient-to-r from-xblue/10 via-purple-500/10 to-pink-500/10 border border-xblue/30 rounded-2xl p-5 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="text-2xl">🚀</div>
+            <div>
+              <div className="text-xs font-bold text-xblue uppercase tracking-wide mb-0.5">Coming Soon</div>
+              <h3 className="font-black text-white text-base">Paid Tiers — Growth Guide Pro</h3>
+              <p className="text-muted-foreground text-xs mt-0.5">Personalized AI coaching, weekly growth reports, and 1-on-1 strategy sessions.</p>
+            </div>
+          </div>
+          <div className="flex-shrink-0 bg-xblue/10 border border-xblue/30 text-xblue text-xs font-black px-4 py-2 rounded-full whitespace-nowrap">
+            🔔 Notify Me
+          </div>
+        </div>
+
         {/* Stats bar */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {[
