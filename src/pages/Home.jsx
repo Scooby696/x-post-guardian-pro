@@ -84,6 +84,25 @@ export default function Home() {
         </section>
 
         <Pricing onUpgradeClick={() => setLicenseOpen(true)} />
+
+        {/* Paid Tiers Coming Soon */}
+        <section className="py-12 px-6 border-t border-border">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-gradient-to-r from-xblue/10 via-purple-500/10 to-pink-500/10 border border-xblue/30 rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div className="flex items-center gap-5">
+                <div className="text-3xl">🚀</div>
+                <div>
+                  <div className="text-xs font-bold text-xblue uppercase tracking-wide mb-1">Coming Soon</div>
+                  <h3 className="text-xl font-black text-white">Paid Tiers — Growth Guide Pro</h3>
+                  <p className="text-muted-foreground text-sm mt-1">Personalized AI coaching, weekly growth reports, and 1-on-1 strategy sessions.</p>
+                </div>
+              </div>
+              <div className="flex-shrink-0 bg-xblue/10 border border-xblue/30 text-xblue text-sm font-black px-6 py-2.5 rounded-full whitespace-nowrap">
+                🔔 Notify Me
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />
