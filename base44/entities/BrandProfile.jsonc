@@ -1,0 +1,52 @@
+{
+  "name": "BrandProfile",
+  "type": "object",
+  "properties": {
+    "brand_name": {
+      "type": "string"
+    },
+    "niche": {
+      "type": "string"
+    },
+    "target_audience": {
+      "type": "string"
+    },
+    "tone": {
+      "type": "string",
+      "enum": [
+        "professional",
+        "casual",
+        "humorous",
+        "inspirational",
+        "educational",
+        "bold"
+      ],
+      "default": "professional"
+    },
+    "unique_value": {
+      "type": "string",
+      "description": "What makes this brand unique"
+    },
+    "goals": {
+      "type": "string",
+      "description": "Brand goals on X"
+    },
+    "ai_analysis": {
+      "type": "string",
+      "description": "AI-generated brand strategy"
+    },
+    "content_pillars": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "voice_guidelines": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "brand_name",
+    "niche"
+  ]
+}

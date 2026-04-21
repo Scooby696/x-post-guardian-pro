@@ -1,0 +1,44 @@
+{
+  "name": "HookItem",
+  "type": "object",
+  "properties": {
+    "text": {
+      "type": "string",
+      "description": "The hook text"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "curiosity",
+        "controversy",
+        "value",
+        "story",
+        "social_proof",
+        "fear",
+        "humor",
+        "challenge"
+      ],
+      "description": "Hook category"
+    },
+    "niche": {
+      "type": "string",
+      "description": "Niche this hook works best for (e.g. marketing, fitness, tech)"
+    },
+    "engagement_score": {
+      "type": "number",
+      "description": "Estimated engagement score 0-100"
+    },
+    "is_trending": {
+      "type": "boolean",
+      "default": false
+    },
+    "last_refreshed": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "text",
+    "category"
+  ]
+}
