@@ -22,6 +22,7 @@ import Composer from "./pages/Composer";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import OAuthCallback from "./pages/OAuthCallback";
+import VoiceController from "./components/voice/VoiceController";
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -48,6 +49,7 @@ const AuthenticatedApp = () => {
 
   // Render the main app
   return (
+    <>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/growth-guide" element={<GrowthGuide />} />
@@ -68,6 +70,8 @@ const AuthenticatedApp = () => {
       {/* Add your page Route elements here */}
       <Route path="*" element={<PageNotFound />} />
     </Routes>
+    <VoiceController />
+    </>
   );
 };
 
