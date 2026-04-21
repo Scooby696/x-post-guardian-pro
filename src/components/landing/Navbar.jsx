@@ -42,6 +42,11 @@ export default function Navbar({ isPro, onLicenseClick }) {
             className="text-muted-foreground hover:text-white text-sm font-medium transition-colors hidden sm:block">
             Draft
           </Link>
+          <Link
+            to="/library"
+            className="text-muted-foreground hover:text-white text-sm font-medium transition-colors hidden sm:block">
+            Library
+          </Link>
           {!isPro ?
           <button
             onClick={onLicenseClick}

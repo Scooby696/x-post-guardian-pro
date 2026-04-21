@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Eye, CalendarPlus, CheckCircle, AlertTriangle, XCircle, X, Twitter } from "lucide-react";
+import { ArrowLeft, Eye, CalendarPlus, CheckCircle, AlertTriangle, XCircle, Twitter, Library } from "lucide-react";
 import { saveScheduledTweet } from "@/lib/scheduler";
 import TweetPreviewModal from "@/components/draft/TweetPreviewModal";
 import CharacterRing from "@/components/draft/CharacterRing";
 import DateTimePicker from "@/components/draft/DateTimePicker";
+import LibraryPickerModal from "@/components/draft/LibraryPickerModal";
 
 const X_LIMIT = 280;
 
@@ -13,6 +14,7 @@ export default function DraftTweet() {
   const [text, setText] = useState("");
   const [scheduledAt, setScheduledAt] = useState(null);
   const [previewOpen, setPreviewOpen] = useState(false);
+  const [libraryOpen, setLibraryOpen] = useState(false);
   const [saved, setSaved] = useState(false);
 
   const remaining = X_LIMIT - text.length;
@@ -70,7 +72,15 @@ export default function DraftTweet() {
           animate={{ opacity: 1, y: 0 }}
           className="bg-card border border-border rounded-2xl p-6 space-y-4"
         >
-          <h2 className="font-black text-white text-lg">Compose Tweet</h2>
+          <div className="flex items-center justify-between">
+            <h2 className="font-black text-white text-lg">Compose Tweet</h2>
+            <button
+              onClick={() => setLibraryOpen(true)}
+              className="flex items-center gap-1.5 text-xs font-bold text-xblue hover:text-xblue/80 border border-xblue/30 hover:border-xblue/60 px-3 py-1.5 rounded-full transition-all"
+            >
+              <Library className="w-3.5 h-3.5" /> From Library
+            </button>
+          </div>
 
           {/* Textarea */}
           <div className="relative">
@@ -172,6 +182,7 @@ export default function DraftTweet() {
       </main>
 
       <TweetPreviewModal open={previewOpen} onClose={() => setPreviewOpen(false)} text={text} />
+      <LibraryPickerModal open={libraryOpen} onClose={() => setLibraryOpen(false)} onPick={body => setText(body)} />
     </div>
   );
 }

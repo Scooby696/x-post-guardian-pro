@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import GrowthGuide from "./pages/GrowthGuide";
 import ScheduledTweets from "./pages/ScheduledTweets";
 import DraftTweet from "./pages/DraftTweet";
+import ContentLibrary from "./pages/ContentLibrary";
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -41,6 +42,7 @@ const AuthenticatedApp = () => {
       <Route path="/growth-guide" element={<GrowthGuide />} />
       <Route path="/scheduled" element={<ScheduledTweets />} />
       <Route path="/draft" element={<DraftTweet />} />
+      <Route path="/library" element={<ContentLibrary />} />
       {/* Add your page Route elements here */}
       <Route path="*" element={<PageNotFound />} />
     </Routes>
