@@ -1,16 +1,18 @@
 import { useState, useRef, useEffect } from "react";
-import { Shield, ChevronDown, BookOpen, Zap, Library, Target, Megaphone, Twitter, Clock } from "lucide-react";
+import { Shield, ChevronDown, BookOpen, Zap, Library, Target, Megaphone, Twitter, Clock, BarChart2, FileText, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const TOOLS = [
-  { to: "/draft",     icon: Twitter,    label: "Draft Tweet",          desc: "Compose & schedule" },
-  { to: "/scheduled", icon: Clock,      label: "Scheduled",            desc: "Manage your queue" },
-  { to: "/templates", icon: BookOpen,   label: "Template Library",     desc: "Best tweet formats" },
-  { to: "/hooks",     icon: Zap,        label: "Hook Library",         desc: "Trending AI hooks" },
-  { to: "/library",   icon: Library,    label: "Content Library",      desc: "Your saved content" },
-  { to: "/brand",     icon: Target,     label: "Brand Analyzer",       desc: "AI brand strategy" },
-  { to: "/marketing", icon: Megaphone,  label: "Marketing Consultant", desc: "AI campaign builder" },
-  { to: "/growth-guide", icon: ChevronDown, label: "Growth Guide",    desc: "2026 X growth tips" },
+  { to: "/dashboard",    icon: Twitter,    label: "Dashboard",            desc: "Your command center" },
+  { to: "/composer",     icon: FileText,   label: "Tweet Composer",       desc: "Write, check & schedule" },
+  { to: "/feed-analyzer",icon: BarChart2,  label: "Feed Analyzer",        desc: "AI feed audit & timing" },
+  { to: "/templates",    icon: BookOpen,   label: "Template Library",     desc: "Best tweet formats" },
+  { to: "/hooks",        icon: Zap,        label: "Hook Library",         desc: "Trending AI hooks" },
+  { to: "/library",      icon: Library,    label: "Content Library",      desc: "Your saved content" },
+  { to: "/brand",        icon: Target,     label: "Brand Analyzer",       desc: "AI brand strategy" },
+  { to: "/marketing",    icon: Megaphone,  label: "Marketing Consultant", desc: "AI campaign builder" },
+  { to: "/growth-guide", icon: TrendingUp, label: "Growth Guide",         desc: "2026 X growth tips" },
+  { to: "/scheduled",    icon: Clock,      label: "Scheduled Queue",      desc: "Manage your queue" },
 ];
 
 export default function Navbar({ isPro, onLicenseClick }) {

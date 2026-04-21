@@ -15,6 +15,10 @@ import HookLibrary from "./pages/HookLibrary";
 import TemplateLibrary from "./pages/TemplateLibrary";
 import BrandAnalyzer from "./pages/BrandAnalyzer";
 import MarketingConsultant from "./pages/MarketingConsultant";
+import Dashboard from "./pages/Dashboard";
+import XConnect from "./pages/XConnect";
+import FeedAnalyzer from "./pages/FeedAnalyzer";
+import Composer from "./pages/Composer";
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -51,6 +55,10 @@ const AuthenticatedApp = () => {
       <Route path="/templates" element={<TemplateLibrary />} />
       <Route path="/brand" element={<BrandAnalyzer />} />
       <Route path="/marketing" element={<MarketingConsultant />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/x-connect" element={<XConnect />} />
+      <Route path="/feed-analyzer" element={<FeedAnalyzer />} />
+      <Route path="/composer" element={<Composer />} />
       {/* Add your page Route elements here */}
       <Route path="*" element={<PageNotFound />} />
     </Routes>

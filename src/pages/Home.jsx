@@ -7,7 +7,7 @@ import Features from "@/components/landing/Features";
 import Pricing from "@/components/landing/Pricing";
 import LicenseModal from "@/components/landing/LicenseModal";
 import Footer from "@/components/landing/Footer";
-import { TrendingUp, ArrowRight } from "lucide-react";
+import { TrendingUp, ArrowRight, LayoutDashboard } from "lucide-react";
 
 const STORAGE_KEY_COUNT = "xrg_analysis_count";
 const STORAGE_KEY_DATE = "xrg_analysis_date";
@@ -59,6 +59,29 @@ export default function Home() {
           isPro={isPro}
         />
         <Features />
+
+        {/* Dashboard CTA Banner */}
+        <section className="py-6 px-6 border-t border-border">
+          <div className="max-w-4xl mx-auto">
+            <Link to="/dashboard" className="block group">
+              <div className="bg-gradient-to-r from-xblue/10 via-purple-500/10 to-transparent border border-xblue/30 hover:border-xblue/60 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4 transition-all">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-xblue/10 flex items-center justify-center flex-shrink-0">
+                    <LayoutDashboard className="w-6 h-6 text-xblue" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold text-xblue uppercase tracking-wide mb-1">All-in-One</div>
+                    <h3 className="text-lg font-black text-white">Open Your Dashboard</h3>
+                    <p className="text-muted-foreground text-sm mt-0.5">Composer, Feed Analyzer, Hook Library, Brand Tools — all in one place.</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 text-xblue font-bold text-sm whitespace-nowrap group-hover:gap-3 transition-all">
+                  Go to Dashboard <ArrowRight className="w-4 h-4" />
+                </div>
+              </div>
+            </Link>
+          </div>
+        </section>
 
         {/* Growth Guide CTA Banner */}
         <section className="py-12 px-6 border-t border-border">
