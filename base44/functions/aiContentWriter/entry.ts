@@ -6,17 +6,28 @@ Deno.serve(async (req) => {
     const user = await base44.auth.me();
     if (!user) return Response.json({ error: 'Unauthorized' }, { status: 401 });
 
-    const { mode, topic, hook, template, tone, brand_context, thread_count } = await req.json();
+    const body = await req.json();
+    const { mode, topic, hook, template, tone, brand_context, thread_count } = body;
 
-    let prompt = "";
+    if (!topic || !topic.trim()) {
+      return Response.json({ error: 'Topic is required' }, { status: 400 });
+    }
 
-    if (mode === "tweet") {
+    const validModes = ['tweet', 'thread', 'marketing'];
+    if (!mode || !validModes.includes(mode)) {
+      return Response.json({ error: `Invalid mode. Must be one of: ${validModes.join(', ')}` }, { status: 400 });
+    }
+
+    let prompt = '';
+    let schema = { type: 'object', additionalProperties: true };
+
+    if (mode === 'tweet') {
       prompt = `You are a viral X/Twitter content writer for 2026. Write a single high-performing tweet.
 Topic: ${topic}
-${hook ? `Opening Hook: "${hook}" — use this as the first line or adapt it.` : ""}
-${template ? `Template structure: ${template}` : ""}
-Tone: ${tone || "engaging and authentic"}
-${brand_context ? `Brand context: ${brand_context}` : ""}
+${hook ? `Opening Hook: "${hook}" — use this as the first line or adapt it.` : ''}
+${template ? `Template structure: ${template}` : ''}
+Tone: ${tone || 'engaging and authentic'}
+${brand_context ? `Brand context: ${brand_context}` : ''}
 
 Rules (MUST follow X's 2026 guidelines):
 - Max 280 characters
@@ -27,54 +38,54 @@ Rules (MUST follow X's 2026 guidelines):
 - No mass @mentions
 - If promotional, must include #Ad or #PaidPromotion label
 
-Return JSON with: { tweet: string, char_count: number, tips: string[] }`;
+Return JSON: { "tweet": string, "char_count": number, "tips": string[] }`;
 
-    } else if (mode === "thread") {
-      const count = thread_count || 5;
+    } else if (mode === 'thread') {
+      const count = Math.min(Math.max(Number(thread_count) || 5, 3), 12);
       prompt = `You are a viral X/Twitter thread writer for 2026. Write a ${count}-tweet thread.
 Topic: ${topic}
-${hook ? `Opening Hook: "${hook}"` : ""}
-Tone: ${tone || "educational and engaging"}
-${brand_context ? `Brand context: ${brand_context}` : ""}
+${hook ? `Opening Hook: "${hook}"` : ''}
+Tone: ${tone || 'educational and engaging'}
+${brand_context ? `Brand context: ${brand_context}` : ''}
 
 Rules (MUST follow X's 2026 guidelines):
 - Each tweet max 280 characters
-- Thread should end with a clear CTA (follow, share thoughts, etc.) — NOT "RT to win"
+- Thread should end with a clear CTA (follow, share thoughts) — NOT "RT to win"
 - No engagement bait
 - Educational or value-driven content
 - Max 1 hashtag per tweet
 - Number each tweet (1/, 2/, etc.)
 
-Return JSON with: { tweets: string[], tips: string[] }`;
+Return JSON: { "tweets": string[], "tips": string[] }`;
 
-    } else if (mode === "marketing") {
+    } else if (mode === 'marketing') {
       prompt = `You are a top-tier X/Twitter marketing consultant for 2026.
 Create a complete marketing content plan for:
 Topic/Product/Service: ${topic}
-Tone: ${tone || "professional"}
-${brand_context ? `Brand: ${brand_context}` : ""}
+Tone: ${tone || 'professional'}
+${brand_context ? `Brand: ${brand_context}` : ''}
 
 Deliver:
-1. A punchy campaign concept
-2. 3 tweet variations (awareness, engagement, conversion)
-3. 1 thread outline (5 tweets)
+1. A punchy campaign concept (2-3 sentences)
+2. 3 tweet variations (awareness, engagement, conversion) — each under 280 chars
+3. 1 thread outline (5 bullet points)
 4. 2 hooks to test
-5. Posting schedule recommendation
+5. Posting schedule recommendation (specific days/times)
 
 All content MUST comply with X's 2026 rules:
 - No engagement bait, no spam, label paid/promotional content with #Ad
 - Max 1-2 hashtags per tweet, no mass @mentions, no misleading claims
 
-Return JSON with: { campaign_concept: string, tweets: string[], thread_outline: string[], hooks: string[], schedule: string, compliance_notes: string }`;
+Return JSON: { "campaign_concept": string, "tweets": string[], "thread_outline": string[], "hooks": string[], "schedule": string, "compliance_notes": string }`;
     }
 
     const result = await base44.asServiceRole.integrations.Core.InvokeLLM({
       prompt,
-      response_json_schema: { type: "object", additionalProperties: true }
+      response_json_schema: schema,
     });
 
     return Response.json({ success: true, result });
   } catch (error) {
-    return Response.json({ error: error.message }, { status: 500 });
+    return Response.json({ success: false, error: error.message }, { status: 500 });
   }
 });
