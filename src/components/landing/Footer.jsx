@@ -1,4 +1,5 @@
 import { Shield } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -12,7 +13,13 @@ export default function Footer() {
         <p className="text-muted-foreground text-sm text-center">
           Not affiliated with X Corp. Rules based on publicly available X/Twitter Community Guidelines.
         </p>
-        <p className="text-muted-foreground text-sm">© 2026 X Rule Guardian</p>
+        <div className="flex flex-col items-center md:items-end gap-1">
+          <p className="text-muted-foreground text-sm">© 2026 X Rule Guardian</p>
+          <div className="flex gap-4 text-xs">
+            <Link to="/terms" className="text-muted-foreground hover:text-white transition-colors">Terms of Service</Link>
+            <Link to="/privacy-policy" className="text-muted-foreground hover:text-white transition-colors">Privacy Policy</Link>
+          </div>
+        </div>
       </div>
     </footer>
   );
