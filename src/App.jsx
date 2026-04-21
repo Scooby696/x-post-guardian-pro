@@ -9,6 +9,7 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import Home from "./pages/Home";
 import GrowthGuide from "./pages/GrowthGuide";
 import ScheduledTweets from "./pages/ScheduledTweets";
+import DraftTweet from "./pages/DraftTweet";
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -39,6 +40,7 @@ const AuthenticatedApp = () => {
       <Route path="/" element={<Home />} />
       <Route path="/growth-guide" element={<GrowthGuide />} />
       <Route path="/scheduled" element={<ScheduledTweets />} />
+      <Route path="/draft" element={<DraftTweet />} />
       {/* Add your page Route elements here */}
       <Route path="*" element={<PageNotFound />} />
     </Routes>

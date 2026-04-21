@@ -35,8 +35,12 @@ export default function Navbar({ isPro, onLicenseClick }) {
           <Link
             to="/scheduled"
             className="text-muted-foreground hover:text-white text-sm font-medium transition-colors hidden sm:block">
-            
             Scheduled
+          </Link>
+          <Link
+            to="/draft"
+            className="text-muted-foreground hover:text-white text-sm font-medium transition-colors hidden sm:block">
+            Draft
           </Link>
           {!isPro ?
           <button
