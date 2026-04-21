@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Shield, Zap, ArrowDown } from "lucide-react";
+import { Shield, Zap, ArrowDown, Twitter } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Hero({ onAnalyzeClick }) {
   return (
@@ -15,10 +16,25 @@ export default function Hero({ onAnalyzeClick }) {
         transition={{ duration: 0.7 }}
         className="relative z-10 max-w-4xl mx-auto"
       >
+        {/* Connect X CTA */}
+        <Link to="/x-connect">
+          <motion.div
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-3 bg-xblue text-black font-black px-6 py-3 rounded-full text-sm mb-6 shadow-lg shadow-xblue/30 animate-pulse-glow cursor-pointer"
+          >
+            <Twitter className="w-4 h-4" />
+            Connect Your X Account — Get Personalized AI Content
+            <span className="bg-black/20 text-white text-xs font-bold px-2 py-0.5 rounded-full">Free</span>
+          </motion.div>
+        </Link>
+
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-xblue/10 border border-xblue/30 text-xblue px-4 py-2 rounded-full text-sm font-semibold mb-8">
-          <Zap className="w-4 h-4" />
-          2026 X/Twitter Rules — Always Updated
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex items-center gap-2 bg-xblue/10 border border-xblue/30 text-xblue px-4 py-2 rounded-full text-sm font-semibold">
+            <Zap className="w-4 h-4" />
+            2026 X/Twitter Rules — Always Updated
+          </div>
         </div>
 
         <h1 className="text-5xl md:text-7xl font-black leading-tight mb-6">
