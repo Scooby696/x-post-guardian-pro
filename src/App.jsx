@@ -21,6 +21,7 @@ import FeedAnalyzer from "./pages/FeedAnalyzer";
 import Composer from "./pages/Composer";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import OAuthCallback from "./pages/OAuthCallback";
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -63,6 +64,7 @@ const AuthenticatedApp = () => {
       <Route path="/composer" element={<Composer />} />
       <Route path="/terms" element={<TermsOfService />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/oauth-callback" element={<OAuthCallback />} />
       {/* Add your page Route elements here */}
       <Route path="*" element={<PageNotFound />} />
     </Routes>

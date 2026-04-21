@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Twitter, User, AtSign, CheckCircle, Edit2, Save, Trash2, Globe, Users, FileText } from "lucide-react";
+import { ArrowLeft, Twitter, User, AtSign, CheckCircle, Edit2, Save, Trash2, Globe, Users, FileText, Loader2 } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 
 const NICHES = ["Tech", "Marketing", "Finance", "Fitness", "Creator Economy", "SaaS", "Personal Development", "Politics", "Sports", "Entertainment", "Business", "Design", "Education", "Other"];
@@ -12,6 +12,20 @@ export default function XConnect() {
   const [profile, setProfile] = useState(null);
   const [editing, setEditing] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [oauthLoading, setOauthLoading] = useState(false);
+
+  async function handleOAuthConnect() {
+    setOauthLoading(true);
+    const res = await base44.functions.invoke("twitterAuthStart", {});
+    if (res.data?.authUrl) {
+      sessionStorage.setItem("twitter_code_verifier", res.data.codeVerifier);
+      sessionStorage.setItem("twitter_oauth_state", res.data.state);
+      window.location.href = res.data.authUrl;
+    } else {
+      setOauthLoading(false);
+    }
+  }
+
   const [form, setForm] = useState({
     display_name: "",
     handle: "",
@@ -138,6 +152,33 @@ export default function XConnect() {
               </Link>
             </div>
           </motion.div>
+        )}
+
+        {/* OAuth Connect */}
+        {!isConnected && (
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="bg-xblue/5 border border-xblue/30 rounded-2xl p-5 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+              <p className="font-black text-white">Connect Directly via X OAuth</p>
+              <p className="text-muted-foreground text-sm">One-click — fetches your profile & tweets automatically.</p>
+            </div>
+            <button
+              onClick={handleOAuthConnect}
+              disabled={oauthLoading}
+              className="flex items-center gap-2 bg-xblue text-black font-black px-5 py-2.5 rounded-full hover:bg-xblue/90 disabled:opacity-50 transition-all text-sm whitespace-nowrap"
+            >
+              {oauthLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Twitter className="w-4 h-4" />}
+              {oauthLoading ? "Redirecting…" : "Connect with X"}
+            </button>
+          </motion.div>
+        )}
+
+        {/* Divider */}
+        {!isConnected && (
+          <div className="flex items-center gap-3">
+            <div className="flex-1 h-px bg-border" />
+            <span className="text-xs text-muted-foreground">or enter manually</span>
+            <div className="flex-1 h-px bg-border" />
+          </div>
         )}
 
         {/* Form (setup or edit) */}
