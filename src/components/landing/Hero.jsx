@@ -43,7 +43,7 @@ export default function Hero({ onAnalyzeClick }) {
           <span className="text-xblue">Suspended Again</span>
         </h1>
 
-        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">Real-time X/Twitter rule analysis. 
+        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">Real-time X/Twitter rule analysis. lOG I
 
         </p>
 
