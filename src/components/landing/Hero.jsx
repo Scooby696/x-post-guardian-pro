@@ -14,15 +14,15 @@ export default function Hero({ onAnalyzeClick }) {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
-        className="relative z-10 max-w-4xl mx-auto"
-      >
+        className="relative z-10 max-w-4xl mx-auto">
+        
         {/* Connect X CTA */}
         <Link to="/x-connect">
           <motion.div
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            className="inline-flex items-center gap-3 bg-xblue text-black font-black px-6 py-3 rounded-full text-sm mb-6 shadow-lg shadow-xblue/30 animate-pulse-glow cursor-pointer"
-          >
+            className="inline-flex items-center gap-3 bg-xblue text-black font-black px-6 py-3 rounded-full text-sm mb-6 shadow-lg shadow-xblue/30 animate-pulse-glow cursor-pointer">
+            
             <Twitter className="w-4 h-4" />
             Connect Your X Account — Get Personalized AI Content
             <span className="bg-black/20 text-white text-xs font-bold px-2 py-0.5 rounded-full">Free</span>
@@ -43,8 +43,8 @@ export default function Hero({ onAnalyzeClick }) {
           <span className="text-xblue">Suspended Again</span>
         </h1>
 
-        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-          Real-time X/Twitter rule analysis. Paste your tweet, get an instant risk score, and post with confidence.
+        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">Real-time X/Twitter rule analysis. 
+
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -52,16 +52,16 @@ export default function Hero({ onAnalyzeClick }) {
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
             onClick={onAnalyzeClick}
-            className="bg-xblue text-black font-bold text-lg px-10 py-4 rounded-full hover:bg-xblue/90 transition-all animate-pulse-glow"
-          >
+            className="bg-xblue text-black font-bold text-lg px-10 py-4 rounded-full hover:bg-xblue/90 transition-all animate-pulse-glow">
+            
             🛡️ Analyze My Tweet — Free
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-            className="border border-border text-white font-semibold text-lg px-10 py-4 rounded-full hover:border-xblue/50 transition-all"
-          >
+            className="border border-border text-white font-semibold text-lg px-10 py-4 rounded-full hover:border-xblue/50 transition-all">
+            
             View Pricing
           </motion.button>
         </div>
@@ -69,25 +69,25 @@ export default function Hero({ onAnalyzeClick }) {
         {/* Stats */}
         <div className="flex flex-col sm:flex-row gap-8 justify-center mt-16 text-center">
           {[
-            { val: "6", label: "Rule Categories Checked" },
-            { val: "Real-time", label: "Instant Analysis" },
-            { val: "2026", label: "Rules Always Current" },
-          ].map((s, i) => (
-            <div key={i} className="flex flex-col">
+          { val: "6", label: "Rule Categories Checked" },
+          { val: "Real-time", label: "Instant Analysis" },
+          { val: "2026", label: "Rules Always Current" }].
+          map((s, i) =>
+          <div key={i} className="flex flex-col">
               <span className="text-3xl font-black text-xblue">{s.val}</span>
               <span className="text-muted-foreground text-sm mt-1">{s.label}</span>
             </div>
-          ))}
+          )}
         </div>
       </motion.div>
 
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground"
-      >
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground">
+        
         <ArrowDown className="w-5 h-5" />
       </motion.div>
-    </section>
-  );
+    </section>);
+
 }
