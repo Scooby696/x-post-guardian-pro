@@ -9,7 +9,7 @@ Deno.serve(async (req) => {
     }
 
     const body = await req.json();
-    const { code, codeVerifier } = body;
+    const { code, codeVerifier, redirectUri } = body;
 
     if (!code || !codeVerifier) {
       return Response.json({ error: 'Missing code or codeVerifier' }, { status: 400 });
@@ -21,7 +21,7 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Twitter credentials not configured' }, { status: 500 });
     }
 
-    const REDIRECT_URI = 'https://xpostguardian.pro/oauth-callback';
+    const REDIRECT_URI = redirectUri || 'https://xpostguardian.pro/oauth-callback';
 
     // Exchange code for tokens
     const tokenRes = await fetch('https://api.twitter.com/2/oauth2/token', {

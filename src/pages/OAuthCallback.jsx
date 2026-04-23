@@ -49,9 +49,11 @@ export default function OAuthCallback() {
       sessionStorage.removeItem("twitter_oauth_state");
 
       try {
+        const redirectUri = `${window.location.origin}/oauth-callback`;
         const res = await base44.functions.invoke("twitterAuthCallback", {
           code,
           codeVerifier: storedVerifier,
+          redirectUri,
         });
 
         if (res.data?.success) {

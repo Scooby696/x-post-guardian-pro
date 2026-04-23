@@ -29,7 +29,8 @@ Deno.serve(async (req) => {
     if (!CLIENT_ID) {
       return Response.json({ error: 'Twitter Client ID not configured' }, { status: 500 });
     }
-    const REDIRECT_URI = 'https://xpostguardian.pro/oauth-callback';
+    const body = await req.json().catch(() => ({}));
+    const REDIRECT_URI = body.redirectUri || 'https://xpostguardian.pro/oauth-callback';
     const SCOPES = 'tweet.read users.read offline.access';
 
     const codeVerifier = generateCodeVerifier();

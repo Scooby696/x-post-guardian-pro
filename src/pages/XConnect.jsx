@@ -16,7 +16,8 @@ export default function XConnect() {
 
   async function handleOAuthConnect() {
     setOauthLoading(true);
-    const res = await base44.functions.invoke("twitterAuthStart", {});
+    const redirectUri = `${window.location.origin}/oauth-callback`;
+    const res = await base44.functions.invoke("twitterAuthStart", { redirectUri });
     if (res.data?.authUrl) {
       sessionStorage.setItem("twitter_code_verifier", res.data.codeVerifier);
       sessionStorage.setItem("twitter_oauth_state", res.data.state);
